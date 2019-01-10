@@ -7,13 +7,38 @@ import './components/TodoComponents/Todo.css';
 
 const todoData = [
   {
-    task: 'Organize Garage',
+    task: 'Attend class',
     id: 1528817077286,
     completed: false
   },
   {
-    task: 'Bake Cookies',
+    task: 'Panic',
     id: 1528817084358,
+    completed: false
+  },
+  {
+    task: 'Work on project',
+    id: 1528817084368,
+    completed: false
+  },
+  {
+    task: 'Give up on project',
+    id: 1528817084378,
+    completed: false
+  },
+  {
+    task: 'Finish project',
+    id: 1528817084388,
+    completed: false
+  },
+  {
+    task: 'Celebrate',
+    id: 1528817084398,
+    completed: false
+  },
+  {
+    task: 'Forget everything learned',
+    id: 1528817084408,
     completed: false
   }
 ];
@@ -48,7 +73,7 @@ class App extends React.Component {
         if (todo.id === id) {
           return {
             ...todo,
-            completed: todo.completed === false ? true : false
+            completed: todo.completed === false ? true : false //or !todo.completed
           };
         } else {
           return todo;
@@ -61,7 +86,7 @@ class App extends React.Component {
     event.preventDefault();
     this.setState({
       todoList: this.state.todoList.filter(
-        todo => todo.completed === false
+        todo => !todo.completed // or todo.completed === false
       )
     });
   };
@@ -70,6 +95,13 @@ class App extends React.Component {
     console.log(this.state.todoList);
     return (
       <div className="App">
+        <h1 className="appTitle">My To Do List</h1>
+        <TodoForm
+          clearCompleted={this.clearCompleted}
+          addNewTodo={this.addNewTodo}
+          handleChanges={this.handleChanges}
+          task={this.state.task}
+        />
         <TodoList 
           todoDataList={this.state.todoList}
           toggleTask={this.toggleTask}

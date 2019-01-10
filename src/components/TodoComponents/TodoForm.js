@@ -3,7 +3,7 @@ import React from 'react';
 
 function TodoForm(props) {
   return (
-    <form onSubmit={props.addNewTodo}>
+    <form className="taskForm" onSubmit={props.addNewTodo}>
       <input
         value={props.task}
         type="text"
