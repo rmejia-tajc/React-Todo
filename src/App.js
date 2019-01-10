@@ -19,8 +19,8 @@ const todoData = [
 ];
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       todoList: todoData,
       task: ''
@@ -42,11 +42,29 @@ class App extends React.Component {
     });
   };
 
+  toggleTask = id => {
+    this.setState({
+      todoList: this.state.todoList.map(todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: todo.completed === false ? true : false
+          };
+        } else {
+          return todo;
+        }
+      })
+    });
+  };
+
   render() {
     console.log(this.state.todoList);
     return (
       <div className="App">
-        <TodoList todoDataList={this.state.todoList} />
+        <TodoList 
+          todoDataList={this.state.todoList}
+          toggleTask={this.toggleTask}
+        />
         <TodoForm
           addNewTodo={this.addNewTodo}
           handleChanges={this.handleChanges}

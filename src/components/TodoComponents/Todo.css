@@ -1,0 +1,7 @@
+.task-false {
+    text-decoration: none;
+}
+
+.task-true {
+    text-decoration: line-through;
+}
